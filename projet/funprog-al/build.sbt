@@ -47,7 +47,7 @@ val compilerOptions = Seq(
   "-Wextra-implicit",
   "-Wnumeric-widen",
   "-Wvalue-discard",
-  "-Wunused:imports,patvars,privates,locals,explicits,implicits,params,linted",
+  // "-Wunused:imports,patvars,privates,locals,explicits,implicits,params,linted",
   // Linting
   //
   "-Xlint:adapted-args",
