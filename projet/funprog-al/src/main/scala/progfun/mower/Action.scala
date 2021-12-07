@@ -1,15 +1,18 @@
-package fr.esgi.al.action
+package fr.esgi.al.funprog
 
-abstract class Action {
-  def getChar(action: Action): String = action match {
-    case Left()    => "G"
-    case Right()   => "D"
-    case Advance() => "A"
+class Action(str: String) {}
+
+object Action {
+
+  def apply(str: String): Action = str match {
+    case "G" => new Left("G")
+    case "D" => new Right("D")
+    case "A" => new Advance("A")
   }
 }
 
-case class Left() extends Action {}
+case class Left(str: String) extends Action(str: String) {}
 
-case class Right() extends Action {}
+case class Right(str: String) extends Action(str: String) {}
 
-case class Advance() extends Action {}
+case class Advance(str: String) extends Action(str: String) {}

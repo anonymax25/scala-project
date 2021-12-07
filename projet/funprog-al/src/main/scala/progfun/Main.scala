@@ -16,6 +16,7 @@ object Main extends App {
   val loader = new InputLoader(inputFilePath)
 
   val inputs = loader.parseInput()
+
   val x: Int = inputs._1
   val y: Int = inputs._2
   val mowers: List[Mower] = inputs._3

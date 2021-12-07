@@ -1,3 +1,5 @@
 package fr.esgi.al.funprog
 
-case class Mower(x: Int, y: Int, direction: Direction) {}
+import fr.esgi.al.funprog._
+
+case class Mower(x: Int, y: Int, direction: Direction, actions: List[Action]) {}

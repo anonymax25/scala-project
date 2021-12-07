@@ -55,11 +55,12 @@ class InputLoader(filePath: String) {
           "wrong line for mower init position!"
         )
       }
-      val actions = l(1).split("").toList
+      val actions: List[Action] = l(1).split("").toList.map(s => new Action(s))
       new Mower(
         coords(0).toInt,
         coords(1).toInt,
-        Direction.getFromString(coords(2))
+        Direction.getFromString(coords(2)),
+        actions
       )
     })
 
