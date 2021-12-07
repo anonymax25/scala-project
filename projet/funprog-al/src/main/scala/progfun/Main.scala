@@ -23,5 +23,15 @@ object Main extends App {
 
   val env = new Environnement(x, y, mowers)
 
-  env.display()
+  println(env.mowers)
+
+  while (env.mowers.filter(m => m.actions.length > 0).length > 0) {
+    env.play()
+    env.display()
+    Thread.sleep(250)
+  }
+
+  println("End of all mower sequences, writing result file...")
+
+  println(env.mowers)
 }

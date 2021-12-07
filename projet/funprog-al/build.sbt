@@ -63,7 +63,7 @@ val compilerOptions = Seq(
   "-Xlint:stars-align",
   "-Xlint:constant",
   "-Xlint:nonlocal-return",
-  "-Xlint:valpattern",
+  // "-Xlint:valpattern",
   "-Xlint:eta-zero,eta-sam",
   "-Xlint:deprecation",
   "-Xlint:nullary-unit", // Warn when nullary methods return Unit.

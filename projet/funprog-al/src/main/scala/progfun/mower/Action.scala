@@ -4,7 +4,7 @@ class Action(str: String) {}
 
 object Action {
 
-  def apply(str: String): Action = str match {
+  def getActionFromString(str: String): Action = str match {
     case "G" => new Left("G")
     case "D" => new Right("D")
     case "A" => new Advance("A")
