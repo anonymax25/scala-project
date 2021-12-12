@@ -1,6 +1,10 @@
 package fr.esgi.al.funprog
 
-class Action(str: String) {}
+import play.api.libs.json._
+
+trait Action {
+  def toJson(): JsValue
+}
 
 object Action {
 
@@ -11,8 +15,14 @@ object Action {
   }
 }
 
-case class Left(str: String) extends Action(str: String) {}
+case class Left(str: String) extends Action {
+  override def toJson(): JsValue = Json.toJson(str)
+}
 
-case class Right(str: String) extends Action(str: String) {}
+case class Right(str: String) extends Action {
+  override def toJson(): JsValue = Json.toJson(str)
+}
 
-case class Advance(str: String) extends Action(str: String) {}
+case class Advance(str: String) extends Action {
+  override def toJson(): JsValue = Json.toJson(str)
+}

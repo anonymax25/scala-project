@@ -14,21 +14,17 @@ object Direction {
 }
 
 case class North() extends Direction {
-  // override def toString: String = "N"
-  override def toString: String = "^"
+  override def toString: String = "N"
 }
 
 case class South() extends Direction {
-  // override def toString: String = "S"
-  override def toString: String = "v"
+  override def toString: String = "S"
 }
 
 case class East() extends Direction {
-  // override def toString: String = "E"
-  override def toString: String = ">"
+  override def toString: String = "E"
 }
 
 case class West() extends Direction {
-  // override def toString: String = "W"
-  override def toString: String = "<"
+  override def toString: String = "W"
 }

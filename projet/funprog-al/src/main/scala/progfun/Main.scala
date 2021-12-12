@@ -1,7 +1,7 @@
 package fr.esgi.al.funprog
 
 import com.typesafe.config.{Config, ConfigFactory}
-
+import play.api.libs.json._
 import fr.esgi.al.funprog._
 
 final case class DonneesIncorectesException(
@@ -23,15 +23,16 @@ object Main extends App {
 
   val env = new Environnement(x, y, mowers)
 
-  println(env.mowers)
-
-  while (env.mowers.filter(m => m.actions.length > 0).length > 0) {
+  while (env.mowers.filter(m => m.playedActions.length > 0).length > 0) {
     env.play()
-    env.display()
-    Thread.sleep(250)
+    // print("\u001b[2J")
+    // Thread.sleep(250)
   }
 
-  println("End of all mower sequences, writing result file...")
+  env.display()
 
-  println(env.mowers)
+  // println(env.mowers)
+
+  println(Json.prettyPrint(env.toJson))
+
 }
