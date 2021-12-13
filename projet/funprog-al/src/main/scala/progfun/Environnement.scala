@@ -88,6 +88,4 @@ class Environnement(limit_x: Int, limit_y: Int, var mowers: List[Mower]) {
       .filter(m => m.position.x == x && m.position.y == y)
       .length == 0
 
-  def get_limit_x = limit_x
-  def get_limit_y = limit_y
 }

@@ -25,11 +25,11 @@ object Main extends App {
 
   while (env.mowers.filter(m => m.playedActions.length > 0).length > 0) {
     env.play()
-    // print("\u001b[2J")
-    // Thread.sleep(250)
+    print("\u001b[2J")
+    Thread.sleep(250)
+    env.display()
   }
 
-  env.display()
 
   // println(env.mowers)
 
