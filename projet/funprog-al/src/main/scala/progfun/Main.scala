@@ -30,7 +30,6 @@ object Main extends App {
     env.display()
   }
 
-
   // println(env.mowers)
 
   println(Json.prettyPrint(env.toJson))
