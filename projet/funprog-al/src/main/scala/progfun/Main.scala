@@ -23,16 +23,9 @@ object Main extends App {
 
   val env = new Environnement(x, y, mowers)
 
-  while (env.mowers.filter(m => m.playedActions.length > 0).length > 0) {
-    env.play()
-    print("\u001b[2J")
-    Thread.sleep(250)
-    env.display()
-  }
+  val executed = Environnement.execute(env)
 
+  println(Json.prettyPrint(executed.toJson))
 
-  // println(env.mowers)
-
-  println(Json.prettyPrint(env.toJson))
-
+  
 }

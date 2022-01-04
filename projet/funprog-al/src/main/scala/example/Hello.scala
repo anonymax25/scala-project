@@ -25,7 +25,7 @@ trait Greeting {
 
   case class MyException(msg: String) extends Exception
 
-  @SuppressWarnings(Array("org.wartremover.warts.Throw"))
+  @SuppressWarnings("org.wartremover.warts.Throw")
   def dangerous(): Unit = {
     throw new MyException("boooom")
   }

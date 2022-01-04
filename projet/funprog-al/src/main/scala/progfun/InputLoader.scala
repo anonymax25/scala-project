@@ -57,22 +57,18 @@ class InputLoader(filePath: String) {
       }
       val actions: List[Action] =
         l(1).split("").toList.map(s => Action.getActionFromString(s))
-      val position = new Position(
-        coords(0).toInt,
-        coords(1).toInt,
-        Direction.getFromString(coords(2))
-      )
+
       new Mower(
-        new Position(
+        new Point(
           coords(0).toInt,
-          coords(1).toInt,
-          Direction.getFromString(coords(2))
+          coords(1).toInt
         ),
-        new Position(
+        Direction.getFromString(coords(2)),
+        new Point(
           coords(0).toInt,
-          coords(1).toInt,
-          Direction.getFromString(coords(2))
+          coords(1).toInt
         ),
+        Direction.getFromString(coords(2)),
         actions,
         actions
       )
