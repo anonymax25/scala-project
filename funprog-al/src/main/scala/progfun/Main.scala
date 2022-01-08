@@ -26,5 +26,5 @@ object Main extends App {
   val executed = Environnement.execute(env)
 
   println(Json.prettyPrint(executed.toJson))
-    
+
 }
