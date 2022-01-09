@@ -77,12 +77,12 @@ class InputLoader(filePath: String) {
             coords(0).toInt,
             coords(1).toInt
           ),
-          Direction.getFromString(coords(2)),
+          Direction(coords(2)),
           new Point(
             coords(0).toInt,
             coords(1).toInt
           ),
-          Direction.getFromString(coords(2)),
+          Direction(coords(2)),
           actions,
           actions
         )

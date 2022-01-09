@@ -7,7 +7,7 @@ abstract class Direction {
 }
 
 object Direction {
-  def getFromString(direction: String): Direction = direction match {
+  def apply(direction: String): Direction = direction match {
     case "N" => new North()
     case "S" => new South()
     case "W" => new West()
