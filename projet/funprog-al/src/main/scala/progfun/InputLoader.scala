@@ -69,7 +69,7 @@ class InputLoader(filePath: String) {
           )
         }
         val actions: List[Action] =
-          l(1).split("").toList.map(s => Action.getActionFromString(s))
+          l(1).split("").toList.map(s => Action(s))
 
         new Mower(
           index + 1,

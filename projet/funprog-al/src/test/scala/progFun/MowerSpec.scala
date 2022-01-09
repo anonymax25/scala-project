@@ -9,7 +9,7 @@ class MowerSpec extends AnyFunSuite {
     val point = new Point(x, y)
     val direction = new North()
     val actions: List[Action] =
-      "AADGA".split("").toList.map(s => Action.getActionFromString(s))
+      "AADGA".split("").toList.map(s => Action(s))
 
     new Mower(
       id,
@@ -22,13 +22,13 @@ class MowerSpec extends AnyFunSuite {
     )
   }
 
-  test("Should get a mower and verify it has an id") {
+  test("Mower should exist and verify it has an id") {
     val mower = getTestMower()
 
     assert(mower.id === 1)
   }
 
-  test("Should advance a mower up once") {
+  test("Mower should advance a mower up once") {
     val mower = getTestMower()
 
     val updated = mower.advance(new Point(5, 5), Nil)
