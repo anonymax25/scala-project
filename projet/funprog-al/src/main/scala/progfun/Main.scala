@@ -20,6 +20,7 @@ object Main extends App {
       x,
       y,
       mowers,
+      conf.getString("application.is-env-verbose").toBoolean,
       conf.getString("application.turn-delay").toInt
     )
 

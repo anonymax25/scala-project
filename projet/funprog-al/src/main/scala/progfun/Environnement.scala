@@ -6,6 +6,7 @@ class Environnement(
     val limit_x: Int,
     val limit_y: Int,
     val mowers: List[Mower],
+    val isVerbose: Boolean,
     val delay: Int
 ) {
 
@@ -70,16 +71,26 @@ object Environnement {
   def execute(env: Environnement): Environnement =
     env.mowers.filter(m => m.playedActions.length > 0) match {
       case first :: rest => {
-        print("\u001b[2J")
-        env.display()
-        Thread.sleep(env.delay.toLong)
+        if (env.isVerbose) {
+          print("\u001b[2J")
+          env.display()
+          Thread.sleep(env.delay.toLong)
+        }
         execute(
-          new Environnement(env.limit_x, env.limit_y, env.play, env.delay)
+          new Environnement(
+            env.limit_x,
+            env.limit_y,
+            env.play,
+            env.isVerbose,
+            env.delay
+          )
         )
       }
       case Nil => {
-        print("\u001b[2J")
-        env.display()
+        if (env.isVerbose) {
+          print("\u001b[2J")
+          env.display()
+        }
         env
       }
     }

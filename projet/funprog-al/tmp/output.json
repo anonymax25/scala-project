@@ -7,6 +7,23 @@
     "id" : 1,
     "debut" : {
       "point" : {
+        "x" : 1,
+        "y" : 2
+      },
+      "direction" : "N"
+    },
+    "instructions" : [ "G", "A", "G", "A", "G", "A", "G", "A", "A" ],
+    "fin" : {
+      "point" : {
+        "x" : 1,
+        "y" : 3
+      },
+      "direction" : "N"
+    }
+  }, {
+    "id" : 2,
+    "debut" : {
+      "point" : {
         "x" : 3,
         "y" : 3
       },
