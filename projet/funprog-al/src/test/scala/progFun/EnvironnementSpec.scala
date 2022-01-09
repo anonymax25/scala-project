@@ -25,4 +25,19 @@ class EnvironnementSpec extends AnyFunSuite {
     assert(executed.mowers(1).direction.equals(East()))
 
   }
+
+  test("Env play execution should only update the first mower's direction only") {
+    val env = SpecHelper.getTestEnv()
+
+    val mowers = env.play
+
+    // mower 1
+    assert(mowers(0).startPoint.equals(mowers(0).point))
+    assert(mowers(0).direction.equals(West())) // same
+
+    // mower 2
+    assert(mowers(1).startPoint.equals(mowers(1).point)) // same
+    assert(mowers(1).startDirection.equals(mowers(1).direction)) // same
+
+  }
 }

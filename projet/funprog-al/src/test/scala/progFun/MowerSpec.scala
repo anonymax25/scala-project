@@ -9,7 +9,7 @@ class MowerSpec extends AnyFunSuite {
     assert(mower.id === 1)
   }
 
-  test("Mower should advance a mower up once") {
+  test("Mower should advance up once") {
     val mower = SpecHelper.getTestMower()
 
     val updated = mower.advance(new Point(5, 5), Nil)
