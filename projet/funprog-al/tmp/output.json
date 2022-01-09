@@ -1,0 +1,24 @@
+{
+  "limit" : {
+    "x" : 5,
+    "y" : 5
+  },
+  "tondeuse" : [ {
+    "id" : 1,
+    "debut" : {
+      "point" : {
+        "x" : 3,
+        "y" : 3
+      },
+      "direction" : "E"
+    },
+    "instructions" : [ "A", "A", "D", "A", "A", "D", "A", "D", "D", "A" ],
+    "fin" : {
+      "point" : {
+        "x" : 5,
+        "y" : 1
+      },
+      "direction" : "E"
+    }
+  } ]
+}

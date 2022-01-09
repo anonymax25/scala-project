@@ -3,12 +3,20 @@ package fr.esgi.al.funprog
 import com.typesafe.config.{Config, ConfigFactory}
 import play.api.libs.json._
 import fr.esgi.al.funprog._
+import java.io._
 
 final case class DonneesIncorectesException(
     val message: String
 ) extends Exception(message)
 
 object Main extends App {
+
+  def writeFile(filename: String, s: String): Unit = {
+    val file = new File(filename)
+    val bw = new BufferedWriter(new FileWriter(file))
+    bw.write(s)
+    bw.close()
+  }
 
   val conf: Config = ConfigFactory.load()
 
@@ -30,7 +38,12 @@ object Main extends App {
 
   val executed = Environnement.execute(env)
 
-  // println(Json.prettyPrint(executed.toJson))
-
-  println(CSVExporter.export(executed.mowers))
+  writeFile(
+    conf.getString("application.output-json-file"),
+    Json.prettyPrint(executed.toJson)
+  )
+  writeFile(
+    conf.getString("application.output-csv-file"),
+    CSVExporter.export(executed.mowers)
+  )
 }
