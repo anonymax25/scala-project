@@ -3,6 +3,10 @@ package fr.esgi.al.funprog
 import better.files._
 import fr.esgi.al.funprog._
 
+final case class DonneesIncorectesException(
+    val message: String
+) extends Exception(message)
+
 @SuppressWarnings(Array("org.wartremover.warts.Throw"))
 class InputLoader(filePath: String) {
 
@@ -60,7 +64,7 @@ class InputLoader(filePath: String) {
           l(1).split("").toList.map(s => Action.getActionFromString(s))
 
         new Mower(
-          index,
+          index + 1,
           new Point(
             coords(0).toInt,
             coords(1).toInt

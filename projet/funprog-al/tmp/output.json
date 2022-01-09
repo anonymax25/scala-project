@@ -4,7 +4,7 @@
     "y" : 5
   },
   "tondeuse" : [ {
-    "id" : 0,
+    "id" : 1,
     "debut" : {
       "point" : {
         "x" : 1,
@@ -21,7 +21,7 @@
       "direction" : "N"
     }
   }, {
-    "id" : 1,
+    "id" : 2,
     "debut" : {
       "point" : {
         "x" : 3,
