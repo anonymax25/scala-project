@@ -9,7 +9,7 @@ class Point(
 }
 
 object Point {
-  
+
   implicit val pointWrites = new Writes[Point] {
     def writes(point: Point): JsValue = {
       Json.obj(

@@ -1,9 +1,9 @@
 {
-  "limit" : {
+  "limite" : {
     "x" : 5,
     "y" : 5
   },
-  "tondeuse" : [ {
+  "tondeuses" : [ {
     "id" : 1,
     "debut" : {
       "point" : {

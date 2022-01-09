@@ -39,8 +39,7 @@ object SpecHelper {
     val limit = new Point(5, 5)
 
     new Environnement(
-      limit.x,
-      limit.y,
+      limit,
       mowers,
       false,
       0

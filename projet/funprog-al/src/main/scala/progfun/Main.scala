@@ -11,14 +11,12 @@ object Main extends App {
 
   val inputLoader = new InputLoader(conf.getString("application.input-file"))
   val inputs = inputLoader.parseInput()
-  val x: Int = inputs._1
-  val y: Int = inputs._2
+  val limit: Point = new Point(inputs._1, inputs._2)
   val mowers: List[Mower] = inputs._3
 
   val env =
     new Environnement(
-      x,
-      y,
+      limit,
       mowers,
       conf.getString("application.is-env-verbose").toBoolean,
       conf.getString("application.turn-delay").toInt
