@@ -77,6 +77,10 @@ object Environnement {
           new Environnement(env.limit_x, env.limit_y, env.play, env.delay)
         )
       }
-      case Nil => env
+      case Nil => {
+        print("\u001b[2J")
+        env.display()
+        env
+      }
     }
 }
