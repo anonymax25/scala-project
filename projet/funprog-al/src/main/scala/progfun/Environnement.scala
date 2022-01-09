@@ -30,11 +30,17 @@ class Environnement(
     "tondeuse" -> mowers.map(m => m.toJson)
   )
 
-  def play: List[Mower] =
-    mowers.filter(m => m.playedActions.length > 0) match {
-      case first :: rest => applyAction(first) :: rest
-      case Nil           => Nil
+  def play: List[Mower] = mowers match {
+    case first :: rest => {
+      val updated = applyAction(first)
+      if (updated.playedActions.length > 0) {
+        updated :: rest
+      } else {
+        rest :+ updated
+      }
     }
+    case Nil => Nil
+  }
 
   def applyAction(mower: Mower): Mower = mower.playedActions match {
     case Nil => mower
