@@ -42,7 +42,15 @@ class InputLoader(filePath: String) {
       )
     }
 
-    val groupedMowerLines = mowerLines.grouped(2).toList
+    // group input lines by 2 for mower parsing, and remove mower line groups when starting with '#'
+    val groupedMowerLines = mowerLines
+      .map(line => line.trim())
+      .grouped(2)
+      .toList
+      .filter(
+        mowerGroup =>
+          mowerGroup(0).take(1) != "#" || mowerGroup(1).take(1) != "#"
+      )
     val mowers: List[Mower] = parseMowerLines(groupedMowerLines)
 
     (sizes(0), sizes(1), mowers)
