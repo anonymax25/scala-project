@@ -9,4 +9,6 @@ class Point(
     "x" -> x,
     "y" -> y
   )
+
+  def equals(p: Point): Boolean = p.x == x && p.y == y
 }

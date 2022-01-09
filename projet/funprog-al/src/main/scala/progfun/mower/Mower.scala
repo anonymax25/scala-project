@@ -49,7 +49,7 @@ class Mower(
   def advance(limit: Point, mowers: List[Mower]): Mower = {
     val newPoint: Point = direction match {
       case North() =>
-        if (isOkMove(point.x, point.y + 1, point, mowers))
+        if (isOkMove(point.x, point.y + 1, limit, mowers))
           new Point(
             point.x,
             point.y + 1
@@ -57,7 +57,7 @@ class Mower(
         else
           point
       case South() =>
-        if (isOkMove(point.x, point.y - 1, point, mowers))
+        if (isOkMove(point.x, point.y - 1, limit, mowers))
           new Point(
             point.x,
             point.y - 1
@@ -66,7 +66,7 @@ class Mower(
           point
 
       case East() =>
-        if (isOkMove(point.x + 1, point.y, point, mowers))
+        if (isOkMove(point.x + 1, point.y, limit, mowers))
           new Point(
             point.x + 1,
             point.y
@@ -74,7 +74,7 @@ class Mower(
         else
           point
       case West() =>
-        if (isOkMove(point.x - 1, point.y, point, mowers))
+        if (isOkMove(point.x - 1, point.y, limit, mowers))
           new Point(
             point.x - 1,
             point.y
@@ -94,8 +94,9 @@ class Mower(
     )
   }
 
-  def isOkMove(x: Int, y: Int, point: Point, mowers: List[Mower]): Boolean =
-    x < 0 || x > point.x || y < 0 || y > point.y || mowers
+  def isOkMove(x: Int, y: Int, limit: Point, mowers: List[Mower]): Boolean = {
+    x >= 0 && x <= limit.x && y >= 0 && y <= limit.y && mowers
       .filter(m => m.point.x == x && m.point.y == y)
       .length == 0
+  }
 }
