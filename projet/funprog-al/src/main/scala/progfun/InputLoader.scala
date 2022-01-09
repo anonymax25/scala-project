@@ -48,30 +48,33 @@ class InputLoader(filePath: String) {
     sizeLine.split(" ").toList.map(s => s.toInt)
 
   def parseMowerLines(mowerLines: List[List[String]]): List[Mower] =
-    mowerLines.map(l => {
-      val coords = l(0).split(" ").toList
-      if (coords.size != 3) {
-        throw DonneesIncorectesException(
-          "wrong line for mower init position!"
+    mowerLines.zipWithIndex.map {
+      case (l, index) => {
+        val coords = l(0).split(" ").toList
+        if (coords.size != 3) {
+          throw DonneesIncorectesException(
+            "wrong line for mower init position!"
+          )
+        }
+        val actions: List[Action] =
+          l(1).split("").toList.map(s => Action.getActionFromString(s))
+
+        new Mower(
+          index,
+          new Point(
+            coords(0).toInt,
+            coords(1).toInt
+          ),
+          Direction.getFromString(coords(2)),
+          new Point(
+            coords(0).toInt,
+            coords(1).toInt
+          ),
+          Direction.getFromString(coords(2)),
+          actions,
+          actions
         )
       }
-      val actions: List[Action] =
-        l(1).split("").toList.map(s => Action.getActionFromString(s))
-
-      new Mower(
-        new Point(
-          coords(0).toInt,
-          coords(1).toInt
-        ),
-        Direction.getFromString(coords(2)),
-        new Point(
-          coords(0).toInt,
-          coords(1).toInt
-        ),
-        Direction.getFromString(coords(2)),
-        actions,
-        actions
-      )
-    })
+    }
 
 }

@@ -4,6 +4,7 @@ import fr.esgi.al.funprog._
 import play.api.libs.json._
 
 class Mower(
+    val id: Int,
     val startPoint: Point,
     val startDirection: Direction,
     val point: Point,
@@ -13,6 +14,7 @@ class Mower(
 ) {
 
   def toJson: JsValue = Json.obj(
+    "id" -> id,
     "debut" -> Json.obj(
       "point"     -> startPoint.toJson,
       "direction" -> startDirection.toString
@@ -25,6 +27,7 @@ class Mower(
   )
 
   def turnRight: Mower = new Mower(
+    id,
     startPoint,
     startDirection,
     point,
@@ -34,6 +37,7 @@ class Mower(
   )
 
   def turnLeft: Mower = new Mower(
+    id,
     startPoint,
     startDirection,
     point,
@@ -80,6 +84,7 @@ class Mower(
     }
 
     new Mower(
+      id,
       startPoint,
       startDirection,
       newPoint,

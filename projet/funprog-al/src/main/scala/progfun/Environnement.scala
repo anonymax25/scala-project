@@ -40,6 +40,7 @@ class Environnement(
     case first :: rest => {
       val updated = runAction(mower, first)
       new Mower(
+        updated.id,
         updated.startPoint,
         updated.startDirection,
         updated.point,
@@ -64,10 +65,9 @@ object Environnement {
       case first :: rest => {
         print("\u001b[2J")
         env.display()
-        Thread.sleep(250)
+        // Thread.sleep(250)
         execute(new Environnement(env.limit_x, env.limit_y, env.play))
       }
       case Nil => env
     }
 }
-// use Writes

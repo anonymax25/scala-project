@@ -27,5 +27,9 @@ object Main extends App {
 
   println(Json.prettyPrint(executed.toJson))
 
-  
+  // executed.mowers.headOption match {
+  //   case Some(m) => println(CSVExporter.export(m))
+  //   case None    => println("no mowers to print")
+  // }
+
 }
