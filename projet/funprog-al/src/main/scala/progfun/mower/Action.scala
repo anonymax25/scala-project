@@ -3,7 +3,7 @@ package fr.esgi.al.funprog
 import play.api.libs.json._
 
 trait Action {
-  def toJson(): JsValue
+  def writes(): JsValue
 }
 
 object Action {
@@ -15,13 +15,13 @@ object Action {
 }
 
 case class Left(str: String) extends Action {
-  override def toJson(): JsValue = Json.toJson(str)
+  override def writes(): JsValue = Json.toJson(str)
 }
 
 case class Right(str: String) extends Action {
-  override def toJson(): JsValue = Json.toJson(str)
+  override def writes(): JsValue = Json.toJson(str)
 }
 
 case class Advance(str: String) extends Action {
-  override def toJson(): JsValue = Json.toJson(str)
+  override def writes(): JsValue = Json.toJson(str)
 }

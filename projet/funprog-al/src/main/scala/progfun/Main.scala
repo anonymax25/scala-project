@@ -24,9 +24,13 @@ object Main extends App {
     )
 
   val executed = Environnement.execute(env)
-
   val json = File(conf.getString("application.output-json-file"))
-  json.createIfNotExists().overwrite(Json.prettyPrint(executed.toJson))
+
+  json
+    .createIfNotExists()
+    .overwrite(
+      Json.prettyPrint(Environnement.environnementWrites.writes(executed))
+    )
 
   val csv = File(conf.getString("application.output-csv-file"))
   csv.createIfNotExists().overwrite(CSVExporter.export(executed.mowers))
