@@ -11,9 +11,8 @@ final case class DonneesIncorectesException(
 object Main extends App {
 
   val conf: Config = ConfigFactory.load()
-  val inputFilePath: String = conf.getString("application.input-file")
 
-  val loader = new InputLoader(inputFilePath)
+  val loader = new InputLoader(conf.getString("application.input-file"))
 
   val inputs = loader.parseInput()
 
@@ -21,15 +20,17 @@ object Main extends App {
   val y: Int = inputs._2
   val mowers: List[Mower] = inputs._3
 
-  val env = new Environnement(x, y, mowers)
+  val env =
+    new Environnement(
+      x,
+      y,
+      mowers,
+      conf.getString("application.turn-delay").toInt
+    )
 
   val executed = Environnement.execute(env)
 
-  println(Json.prettyPrint(executed.toJson))
+  // println(Json.prettyPrint(executed.toJson))
 
-  // executed.mowers.headOption match {
-  //   case Some(m) => println(CSVExporter.export(m))
-  //   case None    => println("no mowers to print")
-  // }
-
+  println(CSVExporter.export(executed.mowers))
 }

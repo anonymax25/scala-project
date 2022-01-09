@@ -5,7 +5,8 @@ import play.api.libs.json._
 class Environnement(
     val limit_x: Int,
     val limit_y: Int,
-    val mowers: List[Mower]
+    val mowers: List[Mower],
+    val delay: Int
 ) {
 
   def display(): Unit = {
@@ -54,7 +55,7 @@ class Environnement(
   def runAction(mower: Mower, action: Action): Mower = action match {
     case Left(_)    => mower.turnLeft
     case Right(_)   => mower.turnRight
-    case Advance(_) => mower.advance(new Point(limit_x, limit_y), this.mowers)
+    case Advance(_) => mower.advance(new Point(limit_x, limit_y), mowers)
     case _          => mower
   }
 }
@@ -65,8 +66,10 @@ object Environnement {
       case first :: rest => {
         print("\u001b[2J")
         env.display()
-        // Thread.sleep(250)
-        execute(new Environnement(env.limit_x, env.limit_y, env.play))
+        Thread.sleep(env.delay.toLong)
+        execute(
+          new Environnement(env.limit_x, env.limit_y, env.play, env.delay)
+        )
       }
       case Nil => env
     }
