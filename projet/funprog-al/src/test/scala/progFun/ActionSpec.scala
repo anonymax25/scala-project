@@ -3,7 +3,7 @@ import fr.esgi.al.funprog._
 
 class ActionSpec extends AnyFunSuite {
 
-  test("Parse action") {
+  test("Parse action to action sub type-class") {
     val actionStr = "A"
     val action = Action(actionStr)
 
