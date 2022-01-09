@@ -12,9 +12,9 @@ object Main extends App {
 
   val conf: Config = ConfigFactory.load()
 
-  val loader = new InputLoader(conf.getString("application.input-file"))
+  val inputLoader = new InputLoader(conf.getString("application.input-file"))
 
-  val inputs = loader.parseInput()
+  val inputs = inputLoader.parseInput()
 
   val x: Int = inputs._1
   val y: Int = inputs._2

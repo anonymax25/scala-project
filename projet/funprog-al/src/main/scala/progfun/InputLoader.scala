@@ -20,7 +20,7 @@ class InputLoader(filePath: String) {
   }
 
   def parseInput(): (Int, Int, List[Mower]) = {
-    val f: File = File(this.filePath)
+    val f: File = File(filePath)
     val lines: List[String] = f.lines.toList
     val sizeLine: String = getFirstLine(lines)
     val mowerLines: List[String] = getMowersLines(lines)

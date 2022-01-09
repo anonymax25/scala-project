@@ -47,40 +47,40 @@ class Mower(
   )
 
   def advance(limit: Point, mowers: List[Mower]): Mower = {
-    val newPoint: Point = this.direction match {
+    val newPoint: Point = direction match {
       case North() =>
-        if (isOkMove(this.point.x, this.point.y + 1, point, mowers))
+        if (isOkMove(point.x, point.y + 1, point, mowers))
           new Point(
-            this.point.x,
-            this.point.y + 1
+            point.x,
+            point.y + 1
           )
         else
-          this.point
+          point
       case South() =>
-        if (isOkMove(this.point.x, this.point.y - 1, point, mowers))
+        if (isOkMove(point.x, point.y - 1, point, mowers))
           new Point(
-            this.point.x,
-            this.point.y - 1
+            point.x,
+            point.y - 1
           )
         else
-          this.point
+          point
 
       case East() =>
-        if (isOkMove(this.point.x + 1, this.point.y, point, mowers))
+        if (isOkMove(point.x + 1, point.y, point, mowers))
           new Point(
-            this.point.x + 1,
-            this.point.y
+            point.x + 1,
+            point.y
           )
         else
-          this.point
+          point
       case West() =>
-        if (isOkMove(this.point.x - 1, this.point.y, point, mowers))
+        if (isOkMove(point.x - 1, point.y, point, mowers))
           new Point(
-            this.point.x - 1,
-            this.point.y
+            point.x - 1,
+            point.y
           )
         else
-          this.point
+          point
     }
 
     new Mower(
