@@ -13,19 +13,6 @@ class Mower(
     val originalActions: List[Action]
 ) {
 
-  def toJson: JsValue = Json.obj(
-    "id" -> id,
-    "debut" -> Json.obj(
-      "point"     -> startPoint.toJson,
-      "direction" -> startDirection.toString
-    ),
-    "instructions" -> originalActions.map(a => a.toJson()),
-    "fin" -> Json.obj(
-      "point"     -> point.toJson,
-      "direction" -> direction.toString
-    )
-  )
-
   def turnRight: Mower = new Mower(
     id,
     startPoint,
@@ -98,5 +85,25 @@ class Mower(
     x >= 0 && x <= limit.x && y >= 0 && y <= limit.y && mowers
       .filter(m => m.point.x == x && m.point.y == y)
       .length == 0
+  }
+}
+
+object Mower {
+
+  implicit val mowersWrites = new Writes[Mower] {
+    def writes(mower: Mower): JsValue = {
+      Json.obj(
+        "id" -> mower.id,
+        "debut" -> Json.obj(
+          "point"     -> Point.pointWrites.writes(mower.startPoint),
+          "direction" -> mower.startDirection.toString
+        ),
+        "instructions" -> mower.originalActions.map(a => a.writes()),
+        "fin" -> Json.obj(
+          "point"     -> Point.pointWrites.writes(mower.point),
+          "direction" -> mower.direction.toString
+        )
+      )
+    }
   }
 }

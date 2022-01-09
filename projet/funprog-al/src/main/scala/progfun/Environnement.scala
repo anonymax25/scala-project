@@ -9,7 +9,7 @@ class Environnement(
     val isVerbose: Boolean,
     val delay: Int
 ) {
-
+  
   def display(): Unit = {
     println("Display environnement:")
     for (y <- limit_y to 0 by -1) {
@@ -22,14 +22,6 @@ class Environnement(
       println()
     }
   }
-
-  def toJson: JsValue = Json.obj(
-    "limit" -> Json.obj(
-      "x" -> limit_x,
-      "y" -> limit_y
-    ),
-    "tondeuse" -> mowers.map(m => m.toJson)
-  )
 
   def play: List[Mower] = mowers match {
     case first :: rest => {
@@ -68,6 +60,7 @@ class Environnement(
 }
 
 object Environnement {
+
   def execute(env: Environnement): Environnement =
     env.mowers.filter(m => m.playedActions.length > 0) match {
       case first :: rest => {
@@ -94,4 +87,16 @@ object Environnement {
         env
       }
     }
+
+  implicit val environnementWrites = new Writes[Environnement] {
+    def writes(env: Environnement): JsValue = {
+      Json.obj(
+        "limit" -> Json.obj(
+          "x" -> env.limit_x,
+          "y" -> env.limit_y
+        ),
+        "tondeuse" -> env.mowers.map(m => Mower.mowersWrites.writes(m))
+      )
+    }
+  }
 }

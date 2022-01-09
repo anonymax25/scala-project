@@ -5,10 +5,17 @@ class Point(
     val x: Int,
     val y: Int
 ) {
-  val toJson: JsValue = Json.obj(
-    "x" -> x,
-    "y" -> y
-  )
-
   def equals(p: Point): Boolean = p.x == x && p.y == y
+}
+
+object Point {
+  
+  implicit val pointWrites = new Writes[Point] {
+    def writes(point: Point): JsValue = {
+      Json.obj(
+        "x" -> point.x,
+        "y" -> point.y
+      )
+    }
+  }
 }
