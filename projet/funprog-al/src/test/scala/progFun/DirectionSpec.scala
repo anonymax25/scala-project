@@ -21,7 +21,6 @@ class DirectionSpec extends AnyFunSuite {
     val south = Direction("S")
     val north = Direction("N")
 
-    //turn right
     assert(east.turnLeft.equals(North()))
     assert(west.turnLeft.equals(South()))
     assert(south.turnLeft.equals(East()))

@@ -9,7 +9,7 @@ class Environnement(
     val isVerbose: Boolean,
     val delay: Int
 ) {
-  
+
   def display(): Unit = {
     println("Display environnement:")
     for (y <- limit_y to 0 by -1) {
