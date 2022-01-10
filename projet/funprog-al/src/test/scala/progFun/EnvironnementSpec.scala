@@ -7,8 +7,8 @@ class EnvironnementSpec extends AnyFunSuite {
     val env = SpecHelper.getTestEnv()
 
     assert(env.mowers.length == 2)
-    assert(env.limit_x == 5)
-    assert(env.limit_y == 5)
+    assert(env.limit.x == 5)
+    assert(env.limit.y == 5)
   }
 
   test("Env should be executed and run all the mower actions turns") {

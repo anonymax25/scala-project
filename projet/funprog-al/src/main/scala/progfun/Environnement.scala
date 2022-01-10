@@ -3,8 +3,7 @@ package fr.esgi.al.funprog
 import play.api.libs.json._
 
 class Environnement(
-    val limit_x: Int,
-    val limit_y: Int,
+    val limit: Point,
     val mowers: List[Mower],
     val isVerbose: Boolean,
     val delay: Int
@@ -12,8 +11,8 @@ class Environnement(
 
   def display(): Unit = {
     println("Display environnement:")
-    for (y <- limit_y to 0 by -1) {
-      for (x <- 0 to limit_x) {
+    for (y <- limit.y to 0 by -1) {
+      for (x <- 0 to limit.x) {
         print(mowers.find(m => m.point.x == x && m.point.y == y) match {
           case Some(m) => " " + m.direction.toString + " "
           case None    => " - "
@@ -54,7 +53,7 @@ class Environnement(
   def runAction(mower: Mower, action: Action): Mower = action match {
     case Left(_)    => mower.turnLeft
     case Right(_)   => mower.turnRight
-    case Advance(_) => mower.advance(new Point(limit_x, limit_y), mowers)
+    case Advance(_) => mower.advance(limit, mowers)
     case _          => mower
   }
 }
@@ -71,8 +70,7 @@ object Environnement {
         }
         execute(
           new Environnement(
-            env.limit_x,
-            env.limit_y,
+            env.limit,
             env.play,
             env.isVerbose,
             env.delay
@@ -91,11 +89,11 @@ object Environnement {
   implicit val environnementWrites = new Writes[Environnement] {
     def writes(env: Environnement): JsValue = {
       Json.obj(
-        "limit" -> Json.obj(
-          "x" -> env.limit_x,
-          "y" -> env.limit_y
+        "limite" -> Json.obj(
+          "x" -> env.limit.x,
+          "y" -> env.limit.y
         ),
-        "tondeuse" -> env.mowers.map(m => Mower.mowersWrites.writes(m))
+        "tondeuses" -> env.mowers.map(m => Mower.mowersWrites.writes(m))
       )
     }
   }
